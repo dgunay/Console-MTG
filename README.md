@@ -10,7 +10,6 @@ devingunay@gmail.com
 
 
 ABOUT:
-~~~~~~~~~~~~~~~~~~~~~~~
 
 This is a little pet project of mine. It started out as an exercise in polymorphism (as my past projects did as well), but then 
 I thought about just how I would go about implementing a decent variety of the thousands of Magic cards that are out there. 
