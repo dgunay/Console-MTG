@@ -1,6 +1,6 @@
-/////////////////
-// CONSOLE MTG //
-/////////////////
++++++++++++++++++
+++ CONSOLE MTG ++
++++++++++++++++++
 
 A console-based Magic: The Gathering play environment and deck builder. Like Cockatrice but way, way less nice to look at. Heavily WIP. 
 
