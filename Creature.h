@@ -7,18 +7,16 @@ class Creature : public Card
 {
 public:
 	Creature();
-	Creature(string name, string type, 
-		string subType, vector<string> newManaCost, 
-		int power, int toughness);
+	Creature(std::string cardName);
 
-	int getPower() const;
-	int getToughness() const;
+	std::string getPower() const;
+	std::string getToughness() const;
 
-	void setPower(int newPower);
-	void setToughness(int newToughness);
+	void setPower(std::string newPower);
+	void setToughness(std::string newToughness);
 
 private:
-	int power;
-	int toughness;
+	std::string power;
+	std::string toughness;
 };
 #endif // !CREATURE_H

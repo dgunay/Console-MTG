@@ -7,7 +7,6 @@ class Land : public Card
 {
 public:
 	Land();
-	Land(string newName, string newSubType, vector<string> newManaCost);
 
 private:
 

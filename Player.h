@@ -8,20 +8,22 @@ class Player
 {
 public:
 	Player();
-
-	vector<Card> getHand() const;
-	vector<Card> getGraveyard() const;
-	vector<Card> getExilePile() const;
+	Player(int playerNumber);
+	std::vector<Card> getHand() const;
+	std::vector<Card> getGraveyard() const;
+	std::vector<Card> getExilePile() const;
 
 	void playCard(const Card& card);
 
 private:
 	int lifePoints;
-	vector<Card> deck;
-	vector<Card> hand;
-	vector<Card> graveyard;
-	vector<Card> exilePile;
-	vector<Card> playSpace; //consider a new PlaySpace object
+	int playerNo;
+	std::string playerName;
+	std::vector<Card> deck;
+	std::vector<Card> hand;
+	std::vector<Card> graveyard;
+	std::vector<Card> exilePile;
+	std::vector<Card> playSpace; //consider a new PlaySpace object
 
 };
 #endif // !PLAYER_H

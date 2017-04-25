@@ -21,7 +21,10 @@ public:
 	//shuffles the cards in the deck randomly
 	void shuffle();
 
-	//removes the top card of the deck and returns the Card
+	/*
+	removes the top card of the deck and returns a
+	Card object representing it
+	*/
 	Card draw();
 
 private:

@@ -2,35 +2,60 @@
 #include <iostream>
 #include <fstream>
 
+using namespace std;
+
 JSONCardParser::JSONCardParser()
 {
-	//THIS IS VERY, VERY SLOW (14 seconds)
-	std::ifstream file("AllCards.json");
-	file >> allCards;
+	finishedLoading = false;
 }
 
-Card JSONCardParser::getCard(std::string cardName)
+void JSONCardParser::loadCards()
 {
-	auto iter = allCards.find(cardName);
+	//THIS IS VERY, VERY SLOW (14 seconds)
+	ifstream file("AllCards.json");
+	file >> allCards;
+	finishedLoading = true;
+}
+
+Card JSONCardParser::getCard(const string& cardName)
+{
 	Card card;
+	
+	nlohmann::json cardData = getJson(cardName);
 
-	//iter.value() is a basic_json. Read documentation
-	//what can we get from it?
-	if (iter != allCards.end()) 
+	if (!cardData.empty())
 	{
-		//FIGURE OUT HOW TO EXTRACT CARD INFO from the ITER
-
-		//USE THIS SYNTAX TO GRAB INDIVIDUAL FIELDS
-		//careful, there are some weird characters in there
-		std::cout << iter.key() << " val: " << iter.value().find("type").value();
+		card.setName(cardName);
+		card.setLayout(cardData.find("layout").value());
+		card.setNames(cardData.find("names").value());
+		card.setManaCost(cardData.find("manaCost").value());
 	}
-
-	std::cout << "card not found" << std::endl;
 
 	return card;
 }
 
+nlohmann::json JSONCardParser::getJson(const string& cardName)
+{
+	nlohmann::json cardData;
+
+	auto iter = allCards.find(cardName);
+
+	if (iter != allCards.end())
+	{
+		cardData = iter.value();
+	}
+	else
+		cerr << "Card not found." << endl;
+
+	return cardData;
+}
+
 void JSONCardParser::printAllCards() const
 {
-	std::cout << allCards;
+	cout << allCards;
+}
+
+bool JSONCardParser::doneLoading() const
+{
+	return finishedLoading;
 }

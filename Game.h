@@ -6,11 +6,14 @@
 enum {BEGIN_TURN, UNTAP, UPKEEP, DRAW, FIRST_MAIN, DECLARE_ATTACKS,
 	COMBAT_RESOLUTION, SECOND_MAIN, END_STEP};
 
+/*
+	Handles a game of Magic.
+*/
 class Game
 {
 public:
 	Game();
-
+	void runGame();
 
 private:
 	int phase;

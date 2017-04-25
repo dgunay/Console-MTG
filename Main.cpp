@@ -11,13 +11,10 @@ Goals of this project:
 - a Deck Builder feature would be awesome
 	- load and save locally, build the deck using the JSON Parser
 	- Could even make a Gatherer-esque search/filter feature
-		- see speed concerns below
 
-- JSON Parser speed is an issue. Loading AllCards.json takes 14s. 
-	Solutions:
-	- Load it once at startup, forget about it. All access through the parser.
-	- Only load the cards used in each deck at the beginning of each game.
-	- Multithread the game so that it loads while the user navigates menus.
+- Game class is WIP
+	- Needs proper turn order / phase management
+	- Player, Deck, and Card also need more functionality
 
 
 
@@ -26,14 +23,13 @@ Goals of this project:
 #include "Card.h"
 #include "Land.h"
 #include "JSONCardParser.h"
-
+#include "MainMenu.h"
 
 int main()
 {
-	JSONCardParser test;
+	MainMenu mm;
 
-	test.getCard("Goblin Electromancer");
-
+	mm.initiateMenus();
 
 	return 0;
 }
