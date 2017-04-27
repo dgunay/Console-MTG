@@ -24,7 +24,7 @@ public:
 	void setLayout(const std::string& newLayout);
 	void setName(const std::string& newName);
 	void setNames(const std::vector<std::string>& newNames);
-	void setManaCost(const std::vector<std::string>& newManaCost);
+	void setManaCost(const std::string& newManaCost);
 	void setCMC(int newCMC);
 	void setColors(const std::vector<std::string>& newColors);
 	void setColorIdentity(const std::vector<std::string>& newColorIdentity);
@@ -35,6 +35,10 @@ public:
 	void setText(const std::string& newText);
 	void setHandSizeMod(int newHandSizeMod);
 	void setLifeTotalMod(int newLifeTotalMod);
+	void setPower(std::string newPower);
+	void setToughness(std::string newToughness);
+
+	std::vector<std::string> getTypes() const;
 
 
 
@@ -61,7 +65,7 @@ private:
 		Requires special formatting/paring. 
 		See http://mtgjson.com/documentation
 	*/
-	std::vector<std::string> manaCost;
+	std::string manaCost;
 
 	//Converted mana cost
 	int cmc;
@@ -72,11 +76,19 @@ private:
 	//mostly used for commander decks
 	std::vector<std::string> colorIdentity;
 
-	//Card type as printed on the card
+	/*
+		Card type as printed on the card.
+		MAY CONTAIN STRANGE SYMBOLS
+	*/
 	std::string type;
 
+	//vector of card's types
 	std::vector<std::string> types;
+
+	//vector of card's supertypes
 	std::vector<std::string> superTypes;
+
+	//vector of card's subtypes
 	std::vector<std::string> subTypes;
 
 	//The text of this card. May contain mana/tap symbols.
@@ -88,7 +100,11 @@ private:
 	//Starting life total modifier. For Vanguard cards only.
 	int startingLifeTotalModifier;
 
+	//Card's power. String type because some cards use *
+	std::string power;
 
+	//Card's toughness. String type because some cards use *
+	std::string toughness;
 
 	//handles tapping behavior - should maybe do with inheritance instead?
 	bool tappable;

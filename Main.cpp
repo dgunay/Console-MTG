@@ -21,7 +21,6 @@ Goals of this project:
 */
 
 #include "Card.h"
-#include "Land.h"
 #include "JSONCardParser.h"
 #include "MainMenu.h"
 

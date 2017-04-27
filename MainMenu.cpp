@@ -4,13 +4,14 @@
 
 #include "MainMenu.h"
 #include "Game.h"
+#include "CardNotFoundException.h"
 
 using namespace std;
 
 MainMenu::MainMenu()
 {
 	//Begin loading cards upon program startup
-	loadingThread = new thread(&JSONCardParser::loadCards, cardParser);
+	loadingThread = new thread(&JSONCardParser::loadCards, &cardParser);
 }
 
 void MainMenu::initiateMenus()
@@ -53,7 +54,7 @@ void MainMenu::initiateMenus()
 
 		if (!quit)
 		{
-			cout << "\nPress any key followed by enter to return to the main menu" << endl;
+			cout << "Press any key followed by enter to return to the main menu" << endl;
 			cin >> userInput;
 		}
 	}
@@ -83,22 +84,42 @@ void MainMenu::runCardViewer()
 {
 	if (!cardParser.doneLoading())
 	{
-		cout << "\n\nLoading cards...";
+		cout << "Loading cards...";
 		loadingThread->join();
 		cout << "\nDone!";
 	}
 	
 	cout << "\n\nCard viewer: ";
-	cout << "\nPlease type in a card name to view its' attributes\n";
-
-	string myCardName;
+	bool quit = false;
 	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-	getline(cin, myCardName);
+	while (!quit)
+	{
+		cout << "\nPlease type in a card name to view its' attributes,\n";
+		cout << "or type QUIT to quit.\n";
 
-	Card myCard = cardParser.getCard(myCardName);
+		string myCardName;
+		getline(cin, myCardName);
 
-	myCard.printCard();
+		system("cls");
+
+		if (myCardName == "QUIT")
+		{
+			quit = true;
+		}
+		else
+		{
+			try
+			{
+				Card myCard = cardParser.getCard(myCardName);
+				myCard.printCard();
+			}
+			catch (CardNotFoundException c)
+			{
+				cerr << c.what();
+			}
+		}
+	}
 }
 
 void MainMenu::aboutScreen()

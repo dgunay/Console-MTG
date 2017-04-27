@@ -22,8 +22,7 @@ void Card::printCard()
 		cout << str << ", ";
 
 	cout << "manaCost: ";
-	for (string str : manaCost)
-		cout << str << ", ";
+	cout << manaCost;
 }
 
 void Card::tap()
@@ -51,7 +50,7 @@ void Card::setNames(const vector<string>& newNames)
 	names = newNames;
 }
 
-void Card::setManaCost(const vector<string>& newManaCost)
+void Card::setManaCost(const string& newManaCost)
 {
 	manaCost = newManaCost;
 }
@@ -104,6 +103,21 @@ void Card::setHandSizeMod(int newHandSizeMod)
 void Card::setLifeTotalMod(int newLifeTotalMod)
 {
 	startingLifeTotalModifier = newLifeTotalMod;
+}
+
+void Card::setPower(std::string newPower)
+{
+	power = newPower;
+}
+
+void Card::setToughness(std::string newToughness)
+{
+	toughness = newToughness;
+}
+
+vector<string> Card::getTypes() const
+{
+	return types;
 }
 
 int Card::convertedManaCost() const
