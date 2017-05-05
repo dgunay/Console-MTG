@@ -5,6 +5,7 @@
 #include "MainMenu.h"
 #include "Game.h"
 #include "CardNotFoundException.h"
+#include "Deck.h"
 
 using namespace std;
 
@@ -75,9 +76,50 @@ void MainMenu::runDeckBuilder()
 		loadingThread->join();
 		cout << "\nDone!";
 	}
-	
 
-	//present options to the user
+	//present options
+	//create deck
+	//quit
+	cout << "\n\nDeck Builder: ";
+	bool quit = false;
+	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+	while (!quit)
+	{
+		cout << "\n1. [B]uild new deck"
+			<< "\n2. [E]dit existing deck"
+			<< "\n3. [Q]uit";
+
+		string option;
+		cin >> option;
+		option = toLowerCase(option);
+		system("cls");
+
+		if (option == "q" || option == "quit" || option == "3")
+			quit = true;
+		else if (option == "2" || option == "e" || option == "edit")
+		{
+			cout << "NOT YET IMPLEMENTED";
+		}
+		else if (option == "1" || option == "b" || option == "build")
+		{
+			Deck deck;
+
+
+			//TODO: implement deck builder
+
+			/*try
+			{
+				Card myCard = cardParser.getCard(myCardName);
+				myCard.printCard();
+			}
+			catch (CardNotFoundException c)
+			{
+				cerr << c.what();
+			}*/
+		}
+	}
+
 }
 
 void MainMenu::runCardViewer()
@@ -137,7 +179,7 @@ void MainMenu::aboutScreen()
 	cout << endl;
 }
 
-//Removes spaces from the beginning and end of the string
+//returns the passed string, with all lowercase letters
 string MainMenu::toLowerCase(const string & str)
 {
 	string newString = str;

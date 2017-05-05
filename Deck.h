@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "Card.h"
+#include "json.hpp"
 
 class Deck
 {
@@ -27,6 +28,7 @@ public:
 	*/
 	Card draw();
 
+	nlohmann::json toJSON() const;
 private:
 	std::vector<Card> cards;
 };
