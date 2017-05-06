@@ -1,4 +1,4 @@
-#CONSOLE MTG
+# CONSOLE MTG
 
 A console-based Magic: The Gathering play environment and deck builder. Like Cockatrice but way, way less nice to look at. Heavily WIP. 
 
@@ -7,7 +7,7 @@ Devin Gunay
 devingunay@gmail.com
 
 
-##ABOUT:
+## ABOUT:
 
 This is a little pet project of mine. It started out as an exercise in polymorphism (as my past projects did as well), but then 
 I thought about just how I would go about implementing a decent variety of the thousands of Magic cards that are out there. 
@@ -24,13 +24,13 @@ any Magic card and control the flow of the game according to the rules of Magic.
 	That's really, really cool sounding but frickin' hard and probably way above my level at the moment. However, the bit about accessing 
 	all published MTG cards, I figured I could do. So I toned down the scope of my project and left rules handling to the users.
 
-##LESSONS LEARNED
+## LESSONS LEARNED
 
 This program was my first exposure to JSON and my first usage of a library that wasn't the STL or cstdlib. So yay, milestones.
 
 This is the first of my programs that I've source controlled through Git.
 
-##LIBRARIES AND RESOURCES
+## LIBRARIES AND RESOURCES
 
 The card data is provided by AllCards.json, compiled by https://mtgjson.com/
 
