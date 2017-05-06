@@ -11,6 +11,48 @@ Card::Card(const string& cardName)
 	name = cardName;
 }
 
+Card::Card(nlohmann::json j)
+{
+	setName(j.at("name"));
+	setLayout(j.find("layout").value());
+
+	if (j.find("names") != j.end())
+		setNames(j.find("names").value());
+
+	setManaCost(j.find("manaCost").value());
+	setCMC(j.find("cmc").value());
+	setColors(j.find("colors").value());
+
+	if (j.find("colorIdentity") != j.end())
+		setColorIdentity(j.find("colorIdentity").value());
+
+	setType(j.find("type").value());
+	setTypes(j.find("types").value());
+
+	if (j.find("superTypes") != j.end())
+		setSuperTypes(j.find("superTypes").value());
+
+	if (j.find("subTypes") != j.end())
+		setSubTypes(j.find("subTypes").value());
+
+	setText(j.find("text").value());
+
+	if (j.find("hand") != j.end())
+		setHandSizeMod(j.find("hand").value());
+
+	if (j.find("life") != j.end())
+		setLifeTotalMod(j.find("life").value());
+
+	if (j.find("power") != j.end())
+		setPower(j.find("power").value());
+
+	if (j.find("toughness") != j.end())
+		setPower(j.find("toughness").value());
+
+	if (j.find("loyalty") != j.end())
+		setPower(j.find("loyalty").value());
+}
+
 //UNFINISHED, FOR TESTING PURPOSES ONLY
 void Card::printCard()
 {

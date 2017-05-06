@@ -2,6 +2,7 @@
 #define CARD_H
 #include <string>
 #include <vector>
+#include "json.hpp"
 
 /*
 	DO NOT IMPLEMENT:
@@ -10,12 +11,17 @@
 	rarity, releaseDate, reserved, timeshifted, variations, watermark
 
 	this data is NOT PROVIDED
+
+	TODO:
+	- assignment operator
+	- copy constructor
 */
 class Card
 {
 public: 
 	Card();
 	Card(const std::string& cardName);
+	Card(nlohmann::json j);
 
 	void printCard();
 	void tap();

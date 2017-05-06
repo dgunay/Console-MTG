@@ -17,6 +17,14 @@ Goals of this project:
 	- Player, Deck, and Card also need more functionality
 
 
+	FINAL PASS:
+	- const and & checks on all functions
+	- style and formatting checks on all classes/functions
+
+	PREVIOUS WORK TO CONTINUE:
+	- finish partial card matching functionality
+	- clean up weirdness with JSONCardParser::cardsSimilarTo(), 
+		getSimilarCards(), and getCard(). Don't need that much stuff.
 
 */
 

@@ -5,6 +5,14 @@
 #include "Card.h"
 #include "json.hpp"
 
+/*
+	TODO:
+	- class description comment
+	- copy constructor
+	- assignment operator
+	- destructor
+	- toJSON()
+*/
 class Deck
 {
 public:

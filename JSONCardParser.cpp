@@ -24,8 +24,8 @@ void JSONCardParser::loadCards()
 
 Card JSONCardParser::getCard(const string& cardName)
 {
-	Card card;
 	nlohmann::json cardData;
+	Card card;
 
 	try
 	{
@@ -38,7 +38,8 @@ Card JSONCardParser::getCard(const string& cardName)
 		
 	if (!cardData.empty())
 	{
-		card.setName(cardName);
+		Card card(cardData);
+		/*card.setName(cardName);
 		card.setLayout(cardData.find("layout").value());
 
 		if (cardData.find("names") != cardData.end())
@@ -75,7 +76,7 @@ Card JSONCardParser::getCard(const string& cardName)
 			card.setPower(cardData.find("toughness").value());
 
 		if (cardData.find("loyalty") != cardData.end())
-			card.setPower(cardData.find("loyalty").value());
+			card.setPower(cardData.find("loyalty").value());*/
 	}
 
 	return card;
@@ -92,9 +93,65 @@ nlohmann::json JSONCardParser::getJson(const string& cardName)
 		cardData = *iter;
 	}
 	else
-		throw CardNotFoundException(cardName);
+	{
+		cardData = cardsSimilarTo(cardName);
+
+		if (cardData.empty())
+			throw CardNotFoundException(cardName);
+	}
+		
 
 	return cardData;
+}
+
+/*
+	Finds cards with names that contain at least 70% of 
+	the characters of passed string.
+
+	Compare each char in the two strings. Sum the amount of same chars,
+	and then convert that to a percentage of characters in the original.
+
+	NEEDS TESTING
+*/
+nlohmann::json JSONCardParser::cardsSimilarTo(const std::string & cardName) const
+{
+	nlohmann::json similarCards;
+	std::string currentCard;
+	double similarity = 0.0;
+	double matchedChars = 0.0;
+	for (auto card : allCards)
+	{
+		currentCard = card["name"].get<std::string>(); //THIS MIGHT NOT WORK
+		similarity = 0.0;
+		matchedChars = 0.0;
+
+		int ix = 0;
+		for (int i = 0; i < cardName.size(); i++)
+		{
+			try
+			{
+				
+				for (char c : cardName)
+				{
+					if (c == currentCard.at(ix))
+						matchedChars += 1.0;
+
+					ix++;
+				}
+			}
+			catch (out_of_range oor)
+			{
+				break;
+			}
+		}
+
+		similarity = matchedChars / cardName.size();
+
+		if (similarity >= 0.7)
+			similarCards.push_back(card);
+	}
+
+	return similarCards;
 }
 
 void JSONCardParser::printAllCards() const
