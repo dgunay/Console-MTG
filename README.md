@@ -23,6 +23,19 @@ any Magic card and control the flow of the game according to the rules of Magic.
 
 	That's really, really cool sounding but frickin' hard and probably way above my level at the moment. However, the bit about accessing 
 	all published MTG cards, I figured I could do. So I toned down the scope of my project and left rules handling to the users.
+	
+## FEATURES
+
+#### Currently implemented:
+
+- Menu system
+- Card lookup (basic functionality)
+
+#### Not yet complete:
+
+- Game environment/player
+- Deck builder
+- Loading/saving decks
 
 ## LESSONS LEARNED
 
