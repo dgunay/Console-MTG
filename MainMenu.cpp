@@ -142,6 +142,7 @@ void MainMenu::runCardViewer()
 
 		string myCardName;
 		getline(cin, myCardName);
+		
 
 		system("cls");
 
@@ -159,6 +160,36 @@ void MainMenu::runCardViewer()
 			catch (CardNotFoundException c)
 			{
 				cerr << c.what();
+
+				//find similar cards
+				nlohmann::json similarCards = cardParser.cardsSimilarTo(myCardName);
+				
+				if (!similarCards.empty())
+				{
+					cout << "\nSimilar cards:";
+					for (size_t i = 0 ; i < similarCards.size() ; i++)
+					{
+						cout << i + 1 << ". " << similarCards.at(i).at("name");
+					}
+
+					bool validInput = false;
+
+					while (!validInput)
+					{
+						//select a card
+						size_t selectCard;
+						cin >> selectCard;
+
+						if (selectCard > 0 && selectCard <= similarCards.size())
+						{
+							Card myCard(similarCards[selectCard]);
+						}
+						else
+						{
+							cerr << "Invalid input. Try again.\n";
+						}
+					}
+				}
 			}
 		}
 	}

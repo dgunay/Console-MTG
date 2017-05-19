@@ -166,3 +166,70 @@ int Card::convertedManaCost() const
 {
 	return cmc;
 }
+
+void Card::operator=(const Card & rh)
+{
+	if (&rh != this) //prevent self assignment
+	{
+		layout = rh.layout;
+		name = rh.name;
+		names = rh.names;
+		manaCost = rh.manaCost;
+		cmc = rh.cmc;
+		colors = rh.colors;
+		colorIdentity = rh.colorIdentity;
+		type = rh.type;
+		types = rh.types;
+		superTypes = rh.superTypes;
+		subTypes = rh.subTypes;
+		text = rh.text;
+		handSizeModifier = rh.handSizeModifier;
+		startingLifeTotalModifier = rh.startingLifeTotalModifier;
+		power = rh.power;
+		toughness = rh.toughness;
+		tappable = rh.tappable;
+		tapped = rh.tapped;
+	}
+}
+
+void Card::operator=(const nlohmann::json j)
+{
+	setName(j.at("name"));
+	setLayout(j.find("layout").value());
+
+	if (j.find("names") != j.end())
+		setNames(j.find("names").value());
+
+	setManaCost(j.find("manaCost").value());
+	setCMC(j.find("cmc").value());
+	setColors(j.find("colors").value());
+
+	if (j.find("colorIdentity") != j.end())
+		setColorIdentity(j.find("colorIdentity").value());
+
+	setType(j.find("type").value());
+	setTypes(j.find("types").value());
+
+	if (j.find("superTypes") != j.end())
+		setSuperTypes(j.find("superTypes").value());
+
+	if (j.find("subTypes") != j.end())
+		setSubTypes(j.find("subTypes").value());
+
+	setText(j.find("text").value());
+
+	if (j.find("hand") != j.end())
+		setHandSizeMod(j.find("hand").value());
+
+	if (j.find("life") != j.end())
+		setLifeTotalMod(j.find("life").value());
+
+	if (j.find("power") != j.end())
+		setPower(j.find("power").value());
+
+	if (j.find("toughness") != j.end())
+		setPower(j.find("toughness").value());
+
+	if (j.find("loyalty") != j.end())
+		setPower(j.find("loyalty").value());
+}

@@ -37,47 +37,7 @@ Card JSONCardParser::getCard(const string& cardName)
 	}
 		
 	if (!cardData.empty())
-	{
-		Card card(cardData);
-		/*card.setName(cardName);
-		card.setLayout(cardData.find("layout").value());
-
-		if (cardData.find("names") != cardData.end())
-			card.setNames(cardData.find("names").value());
-
-		card.setManaCost(cardData.find("manaCost").value());
-		card.setCMC(cardData.find("cmc").value());
-		card.setColors(cardData.find("colors").value());
-
-		if (cardData.find("colorIdentity") != cardData.end())
-			card.setColorIdentity(cardData.find("colorIdentity").value());
-
-		card.setType(cardData.find("type").value());
-		card.setTypes(cardData.find("types").value());
-
-		if (cardData.find("superTypes") != cardData.end())
-			card.setSuperTypes(cardData.find("superTypes").value());
-
-		if (cardData.find("subTypes") != cardData.end())
-			card.setSubTypes(cardData.find("subTypes").value());
-
-		card.setText(cardData.find("text").value());
-
-		if (cardData.find("hand") != cardData.end())
-			card.setHandSizeMod(cardData.find("hand").value());
-
-		if (cardData.find("life") != cardData.end())
-			card.setLifeTotalMod(cardData.find("life").value());
-
-		if (cardData.find("power") != cardData.end())
-			card.setPower(cardData.find("power").value());
-
-		if (cardData.find("toughness") != cardData.end())
-			card.setPower(cardData.find("toughness").value());
-
-		if (cardData.find("loyalty") != cardData.end())
-			card.setPower(cardData.find("loyalty").value());*/
-	}
+		card = cardData;
 
 	return card;
 }
@@ -119,18 +79,18 @@ nlohmann::json JSONCardParser::cardsSimilarTo(const std::string & cardName) cons
 	std::string currentCard;
 	double similarity = 0.0;
 	double matchedChars = 0.0;
-	for (auto card : allCards)
+
+	for (auto card : allCards) //every card in json allCards
 	{
 		currentCard = card["name"].get<std::string>(); //THIS MIGHT NOT WORK
 		similarity = 0.0;
 		matchedChars = 0.0;
 
 		int ix = 0;
-		for (int i = 0; i < cardName.size(); i++)
+		for (size_t i = 0; i < cardName.size(); i++) 
 		{
 			try
 			{
-				
 				for (char c : cardName)
 				{
 					if (c == currentCard.at(ix))

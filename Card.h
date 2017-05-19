@@ -50,6 +50,9 @@ public:
 
 	int convertedManaCost() const;
 
+	void operator=(const Card& rh);
+	void operator=(const nlohmann::json j);
+
 
 private:
 	/*
